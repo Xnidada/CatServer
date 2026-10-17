@@ -5,6 +5,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerChunkMap;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.WorldServer;
 
 public class WorldTickSkipManager {
@@ -23,16 +24,21 @@ public class WorldTickSkipManager {
             if (CatServer.getConfig().enableSkipEntityTick) {
                 for (Entity entity : world.loadedEntityList) {
                     BlockPos pos = entity.getPosition();
-                    entity.skipTick = !playerChunkMap.contains(pos.getX() >> 4, pos.getZ() >> 4);
+                    entity.skipTick = !isChunkActive(world, playerChunkMap, pos.getX() >> 4, pos.getZ() >> 4);
                 }
             }
 
             if (CatServer.getConfig().enableSkipTileEntityTick) {
                 for (TileEntity tileEntity : world.tickableTileEntities) {
                     BlockPos pos = tileEntity.getPos();
-                    tileEntity.skipTick = !playerChunkMap.contains(pos.getX() >> 4, pos.getZ() >> 4);
+                    tileEntity.skipTick = !isChunkActive(world, playerChunkMap, pos.getX() >> 4, pos.getZ() >> 4);
                 }
             }
         }
+    }
+
+    private static boolean isChunkActive(WorldServer world, PlayerChunkMap playerChunkMap, int chunkX, int chunkZ) {
+        return playerChunkMap.contains(chunkX, chunkZ)
+                || world.getPersistentChunks().containsKey(new ChunkPos(chunkX, chunkZ));
     }
 }
