@@ -191,7 +191,7 @@ public class FMLNetworkHandler
             }
             String rejectString = String.join("\n", rejectStrings);
             FMLLog.log.info("Rejecting connection {}: {}", side, rejectString);
-            return String.format("Server Mod rejections:\n%s", rejectString);
+            return String.format("服务器客户端已更新,请在群内下载最新客户端后再进入游玩\n%s", rejectString);
         }
     }
 

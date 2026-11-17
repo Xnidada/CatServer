@@ -40,9 +40,6 @@ public class VersionCheck {
                 if (!isDev && !Strings.isNullOrEmpty(versionData.version) && !currentVersion.equals(versionData.version)) {
                     CatServer.log.info(String.format(LanguageUtils.I18nToString("versioncheck.new_version"), versionData.version));
                 }
-                if (!Strings.isNullOrEmpty(versionData.message)) {
-                    CatServer.log.info(versionData.message);
-                }
             } catch (Exception e) {
                 CatServer.log.warn(String.format(LanguageUtils.I18nToString("versioncheck.failure"), e.toString()));
             }

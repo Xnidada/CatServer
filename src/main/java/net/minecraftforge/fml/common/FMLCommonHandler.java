@@ -638,7 +638,7 @@ public class FMLCommonHandler
     {
         if (!shouldAllowPlayerLogins())
         {
-            TextComponentString text = new TextComponentString("Server is still starting! Please wait before reconnecting.");
+            TextComponentString text = new TextComponentString("目标服区正在重启!请等待服务器重启完成的公告,或3分钟后尝试重连");
             FMLLog.log.info("Disconnecting Player: {}", text.getUnformattedText());
             manager.sendPacket(new SPacketDisconnect(text));
             manager.closeChannel(text);
