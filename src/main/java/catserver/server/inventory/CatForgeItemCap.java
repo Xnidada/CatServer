@@ -49,8 +49,11 @@ public class CatForgeItemCap implements Cloneable {
     }
 
     public static void setItemCap(net.minecraft.item.ItemStack nmsItemStack, ItemStack bukkitItemStack) {
-        if (nmsItemStack != null && nmsItemStack.capabilities != null) {
-            NBTTagCompound capNBT = nmsItemStack.capabilities.serializeNBT();
+        if (nmsItemStack != null && bukkitItemStack != null) {
+            NBTTagCompound stackNBT = nmsItemStack.serializeNBT();
+            NBTTagCompound capNBT = stackNBT.hasKey("ForgeCaps", 10)
+                    ? stackNBT.getCompoundTag("ForgeCaps")
+                    : null;
             if (capNBT != null && !capNBT.hasNoTags()) {
                 bukkitItemStack.setForgeItemCap(new CatForgeItemCap(capNBT));
             }

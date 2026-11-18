@@ -21,6 +21,14 @@ QQ群: [591257](https://jq.qq.com/?_wv=1027&k=5B5aKkW) | Telegram: [@CatServer](
 #### 如何支持我们
 不必赞助, 只需要给本仓库点击"Star"和"Fork", 如果愿意收到通知可以点击"Watch"
 
+## 更新记录
+
+### 2026-11-18
+- 更新服务器启动期间的连接提示, 明确提示服务器正在重启以及重连时间。
+- 更新客户端与服务端模组版本不匹配时的提示, 引导玩家下载最新客户端。
+- 修复启用 Chibi `delayItemStackCapabilityInit` 后, Bukkit 物品转换可能丢失 Forge capability NBT 的问题, 避免 Thaumic Augmentation 护手增强槽恢复为空。
+- 移除版本检查接口返回的 CatServer 远程广告消息输出。
+
 ### 服务端特性
 使用原创优化和部分Paper优化大幅度提升性能<br>
 拥有强大的Remap系统保证良好的插件兼容性<br>
