@@ -48,7 +48,7 @@ public class CatServerConfig {
     public int itemNBTThrottle = 200;
     public boolean limitFastClickGUI = false;
     public int clickGUIThrottle = 50;
-    public int releaseUseItemThrottle = 20;
+    public int releaseUseItemThrottle = 40;
 
     public boolean disableUpdateGameProfile = false;
     public boolean disableFMLHandshake = false;

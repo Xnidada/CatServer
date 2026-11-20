@@ -728,7 +728,7 @@
 +                // CatServer start
 +                if (catserver.server.CatServer.getConfig().releaseUseItemThrottle > 0 && this.releasedUseItemThrottle++ >= catserver.server.CatServer.getConfig().releaseUseItemThrottle) {
 +                    LOGGER.warn(this.player.getName() + " released use item too quickly!");
-+                    this.disconnect("You released use item too quickly (Hacking?)");
++                    this.disconnect("释放使用物品过快（疑似作弊）");
 +                    return;
 +                }
 +                // CatServer end
