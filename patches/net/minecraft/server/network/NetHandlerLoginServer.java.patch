@@ -177,7 +177,7 @@
 +                        initUUID();
 +                        new LoginHandler().fireEvents();
 +                    } catch (Exception ex) {
-+                        disconnect("Failed to verify username!");
++                        disconnect("玩家身份验证失败！");
 +                        server.server.getLogger().log(java.util.logging.Level.WARNING, "Exception verifying " + loginGameProfile.getName(), ex);
 +                    }
 +                }
@@ -242,7 +242,7 @@
                          }
 +                        // CraftBukkit start - catch all exceptions
 +                    } catch (Exception exception) {
-+                        disconnect("Failed to verify username!");
++                        disconnect("玩家身份验证失败！");
 +                        server.server.getLogger().log(java.util.logging.Level.WARNING, "Exception verifying " + gameprofile.getName(), exception);
 +                        // CraftBukkit end
                      }

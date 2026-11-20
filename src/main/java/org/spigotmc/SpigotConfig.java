@@ -177,8 +177,8 @@ public class SpigotConfig
     public static String whitelistMessage;
     public static String unknownCommandMessage;
     public static String serverFullMessage;
-    public static String outdatedClientMessage = "Outdated client! Please use {0}";
-    public static String outdatedServerMessage = "Outdated server! I\'m still on {0}";
+    public static String outdatedClientMessage = "客户端版本过旧！请使用 {0}。";
+    public static String outdatedServerMessage = "服务器版本过旧！当前服务器运行的是 {0}。";
     private static String transform(String s)
     {
         return ChatColor.translateAlternateColorCodes( '&', s ).replaceAll( "\\\\n", "\n" );
@@ -191,9 +191,9 @@ public class SpigotConfig
             set( "messages.outdated-server", outdatedServerMessage );
         }
 
-        whitelistMessage = transform( getString( "messages.whitelist", "You are not whitelisted on this server!" ) );
-        unknownCommandMessage = transform( getString( "messages.unknown-command", "Unknown command. Type \"/help\" for help." ) );
-        serverFullMessage = transform( getString( "messages.server-full", "The server is full!" ) );
+        whitelistMessage = transform( getString( "messages.whitelist", "你不在此服务器的白名单中！" ) );
+        unknownCommandMessage = transform( getString( "messages.unknown-command", "未知命令。输入 /help 获取帮助。" ) );
+        serverFullMessage = transform( getString( "messages.server-full", "服务器已满！" ) );
         outdatedClientMessage = transform( getString( "messages.outdated-client", outdatedClientMessage ) );
         outdatedServerMessage = transform( getString( "messages.outdated-server", outdatedServerMessage ) );
     }
@@ -207,7 +207,7 @@ public class SpigotConfig
         timeoutTime = getInt( "settings.timeout-time", timeoutTime );
         restartOnCrash = getBoolean( "settings.restart-on-crash", restartOnCrash );
         restartScript = getString( "settings.restart-script", restartScript );
-        restartMessage = transform( getString( "messages.restart", "Server is restarting" ) );
+        restartMessage = transform( getString( "messages.restart", "服务器正在重启,请稍后再试" ) );
         commands.put( "restart", new RestartCommand( "restart" ) );
         WatchdogThread.doStart( timeoutTime, restartOnCrash );
     }

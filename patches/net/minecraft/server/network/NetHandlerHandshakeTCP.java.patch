@@ -48,7 +48,7 @@
 +                    synchronized (throttleTracker) {
 +                        if (throttleTracker.containsKey(address) && !"127.0.0.1".equals(address.getHostAddress()) && currentTime - throttleTracker.get(address) < connectionThrottle) {
 +                            throttleTracker.put(address, currentTime);
-+                            ITextComponent chatmessage = new TextComponentTranslation("Connection throttled! Please wait before reconnecting.");
++                            ITextComponent chatmessage = new TextComponentTranslation("连接过于频繁，请稍后再重连。");
 +                            this.networkManager.sendPacket(new SPacketDisconnect(chatmessage));
 +                            this.networkManager.closeChannel(chatmessage);
 +                            return;
@@ -99,7 +99,7 @@
 +                            networkManager.socketAddress = new java.net.InetSocketAddress(split[1], ((java.net.InetSocketAddress) networkManager.getRemoteAddress()).getPort());
 +                            networkManager.spoofedUUID = com.mojang.util.UUIDTypeAdapter.fromString(split[2]);
 +                        } else {
-+                            ITextComponent itextcomponent1 = new TextComponentTranslation("If you wish to use IP forwarding, please enable it in your BungeeCord config as well!");
++                            ITextComponent itextcomponent1 = new TextComponentTranslation("如需使用 IP 转发，请同时在 BungeeCord 配置中启用该功能！");
 +                            this.networkManager.sendPacket(new SPacketDisconnect(itextcomponent1));
 +                            this.networkManager.closeChannel(itextcomponent1);
 +                            return;

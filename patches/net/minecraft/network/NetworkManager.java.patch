@@ -125,7 +125,7 @@
 +        if (p_exceptionCaught_2_ instanceof TimeoutException) {
              textcomponenttranslation = new TextComponentTranslation("disconnect.timeout", new Object[0]);
 +        } else {
-+            textcomponenttranslation = new TextComponentTranslation("disconnect.genericReason", new Object[]{"Internal Exception: " + p_exceptionCaught_2_});
++            textcomponenttranslation = new TextComponentTranslation("disconnect.genericReason", new Object[]{"内部异常：" + p_exceptionCaught_2_});
          }
 -        else
 -        {

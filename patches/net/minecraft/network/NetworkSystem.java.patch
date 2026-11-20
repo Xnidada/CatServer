@@ -56,6 +56,15 @@
              Iterator<NetworkManager> iterator = this.networkManagers.iterator();
  
              while (iterator.hasNext())
+@@ -195,7 +203,7 @@
+                             }
+ 
+                             LOGGER.warn("Failed to handle packet for {}", networkmanager.getRemoteAddress(), exception);
+-                            final TextComponentString textcomponentstring = new TextComponentString("Internal server error");
++                            final TextComponentString textcomponentstring = new TextComponentString("服务器内部错误！");
+                             networkmanager.sendPacket(new SPacketDisconnect(textcomponentstring), new GenericFutureListener < Future <? super Void >> ()
+                             {
+                                 public void operationComplete(Future <? super Void > p_operationComplete_1_) throws Exception
 @@ -208,6 +216,9 @@
                      }
                      else

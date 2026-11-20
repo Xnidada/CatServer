@@ -708,7 +708,7 @@
 +                        this.dropCount++;
 +                        if (this.dropCount >= 20) {
 +                            LOGGER.warn(this.player.getName() + " dropped their items too quickly!");
-+                            this.disconnect("You dropped your items too quickly (Hacking?)");
++                            this.disconnect("丢弃物品过快（疑似作弊）");
 +                            return;
 +                        }
 +                    }
@@ -1919,7 +1919,7 @@
          if ("MC|BEdit".equals(s))
          {
 +            if (this.lastBookTick + 20 > MinecraftServer.currentTick) {
-+                this.disconnect("Book edited too quickly!");
++                this.disconnect("编辑书本过快！");
 +                return;
 +            }
 +            this.lastBookTick = MinecraftServer.currentTick;
@@ -1936,13 +1936,13 @@
              catch (Exception exception6)
              {
                  LOGGER.error("Couldn't handle book info", (Throwable)exception6);
-+                this.disconnect("Invalid book data!");
++                this.disconnect("书本数据无效！");
              }
          }
          else if ("MC|BSign".equals(s))
          {
 +            if (this.lastBookTick + 20 > MinecraftServer.currentTick) {
-+                this.disconnect("Book edited too quickly!");
++                this.disconnect("编辑书本过快！");
 +                return;
 +            }
 +            this.lastBookTick = MinecraftServer.currentTick;
@@ -1961,7 +1961,7 @@
              catch (Exception exception7)
              {
                  LOGGER.error("Couldn't sign book", (Throwable)exception7);
-+                this.disconnect("Invalid book data!");
++                this.disconnect("书本数据无效！");
              }
          }
          else if ("MC|TrSel".equals(s))
@@ -1969,7 +1969,7 @@
              catch (Exception exception5)
              {
                  LOGGER.error("Couldn't select trade", (Throwable)exception5);
-+                this.disconnect("Invalid trade data!");
++                this.disconnect("交易数据无效！");
              }
          }
          else if ("MC|AdvCmd".equals(s))
@@ -1977,7 +1977,7 @@
              catch (Exception exception4)
              {
                  LOGGER.error("Couldn't set command block", (Throwable)exception4);
-+                this.disconnect("Invalid command data!");
++                this.disconnect("命令数据无效！");
              }
          }
          else if ("MC|AutoCmd".equals(s))
@@ -1985,7 +1985,7 @@
              catch (Exception exception3)
              {
                  LOGGER.error("Couldn't set command block", (Throwable)exception3);
-+                this.disconnect("Invalid command data!");
++                this.disconnect("命令数据无效！");
              }
          }
          else if ("MC|Beacon".equals(s))
@@ -1993,7 +1993,7 @@
                  catch (Exception exception2)
                  {
                      LOGGER.error("Couldn't set beacon", (Throwable)exception2);
-+                    this.disconnect("Invalid beacon data!");
++                    this.disconnect("信标数据无效！");
                  }
              }
          }
@@ -2001,7 +2001,7 @@
              catch (Exception exception1)
              {
                  LOGGER.error("Couldn't set structure block", (Throwable)exception1);
-+                this.disconnect("Invalid structure data!");
++                this.disconnect("结构数据无效！");
              }
          }
          else if ("MC|PickItem".equals(s))
@@ -2009,7 +2009,7 @@
              catch (Exception exception)
              {
                  LOGGER.error("Couldn't pick item", (Throwable)exception);
-+                this.disconnect("Invalid pick item!");
++                this.disconnect("物品选择无效！");
              }
          }
 +        // CraftBukkit start
@@ -2021,7 +2021,7 @@
 +                }
 +            } catch (Exception ex) {
 +                NetHandlerPlayServer.LOGGER.error("Couldn\'t register custom payload", ex);
-+                this.disconnect("Invalid payload REGISTER!");
++                this.disconnect("REGISTER 数据包无效！");
 +            }
 +        } else if (packetIn.getChannelName().equals("UNREGISTER")) {
 +            try {
@@ -2031,7 +2031,7 @@
 +                }
 +            } catch (Exception ex) {
 +                NetHandlerPlayServer.LOGGER.error("Couldn\'t unregister custom payload", ex);
-+                this.disconnect("Invalid payload UNREGISTER!");
++                this.disconnect("UNREGISTER 数据包无效！");
 +            }
 +        } else {
 +            try {
@@ -2040,7 +2040,7 @@
 +                server.getMessenger().dispatchIncomingMessage(player.getBukkitEntity(), packetIn.getChannelName(), data);
 +            } catch (Exception ex) {
 +                NetHandlerPlayServer.LOGGER.error("Couldn\'t dispatch custom payload", ex);
-+                this.disconnect("Invalid custom payload!");
++                this.disconnect("自定义数据包无效！");
 +            }
 +        }
      }

@@ -648,7 +648,7 @@ public class FMLCommonHandler
         if (packet.getRequestedState() == EnumConnectionState.LOGIN && (!NetworkRegistry.INSTANCE.isVanillaAccepted(Side.CLIENT) && !packet.hasFMLMarker()))
         {
             manager.setConnectionState(EnumConnectionState.LOGIN);
-            TextComponentString text = new TextComponentString("This server has mods that require FML/Forge to be installed on the client. Contact your server admin for more details.");
+            TextComponentString text = new TextComponentString("此服务器安装了需要客户端安装 FML/Forge 的模组。详情请联系服务器管理员。");
             Collection<String> modNames = NetworkRegistry.INSTANCE.getRequiredMods(Side.CLIENT);
             FMLLog.log.info("Disconnecting Player: This server has mods that require FML/Forge to be installed on the client: {}", modNames);
             manager.sendPacket(new SPacketDisconnect(text));

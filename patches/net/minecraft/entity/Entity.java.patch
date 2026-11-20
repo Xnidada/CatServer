@@ -179,7 +179,7 @@
 +        if (yaw == Float.POSITIVE_INFINITY || yaw == Float.NEGATIVE_INFINITY) {
 +            if (this instanceof EntityPlayer) {
 +                this.world.getServer().getLogger().warning(this.getName() + " was caught trying to crash the server with an invalid yaw");
-+                ((CraftPlayer) this.getBukkitEntity()).kickPlayer("Nope");
++                ((CraftPlayer) this.getBukkitEntity()).kickPlayer("检测到异常数据，连接已断开。");
 +            }
 +            yaw = 0;
 +        }
@@ -192,7 +192,7 @@
 +        if (pitch == Float.POSITIVE_INFINITY || pitch == Float.NEGATIVE_INFINITY) {
 +            if (this instanceof EntityPlayer) {
 +                this.world.getServer().getLogger().warning(this.getName() + " was caught trying to crash the server with an invalid pitch");
-+                ((CraftPlayer) this.getBukkitEntity()).kickPlayer("Nope");
++                ((CraftPlayer) this.getBukkitEntity()).kickPlayer("检测到异常数据，连接已断开。");
 +            }
 +            pitch = 0;
 +        }

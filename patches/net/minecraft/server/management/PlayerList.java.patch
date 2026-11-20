@@ -426,7 +426,44 @@
      }
  
      public String allowUserToConnect(SocketAddress address, GameProfile profile)
-@@ -430,6 +620,87 @@
+@@ -399,37 +589,118 @@
+         if (this.bannedPlayers.isBanned(profile))
+         {
+             UserListBansEntry userlistbansentry = (UserListBansEntry)this.bannedPlayers.getEntry(profile);
+-            String s1 = "You are banned from this server!\nReason: " + userlistbansentry.getBanReason();
++            String s1 = "你已被此服务器封禁！\n原因：" + userlistbansentry.getBanReason();
+ 
+             if (userlistbansentry.getBanEndDate() != null)
+             {
+-                s1 = s1 + "\nYour ban will be removed on " + DATE_FORMAT.format(userlistbansentry.getBanEndDate());
++                s1 = s1 + "\n封禁将于 " + DATE_FORMAT.format(userlistbansentry.getBanEndDate());
+             }
+ 
+             return s1;
+         }
+         else if (!this.canJoin(profile))
+         {
+-            return "You are not white-listed on this server!";
++            return "你不在此服务器的白名单中！";
+         }
+         else if (this.bannedIPs.isBanned(address))
+         {
+             UserListIPBansEntry userlistipbansentry = this.bannedIPs.getBanEntry(address);
+-            String s = "Your IP address is banned from this server!\nReason: " + userlistipbansentry.getBanReason();
++            String s = "你的 IP 地址已被此服务器封禁！\n原因：" + userlistipbansentry.getBanReason();
+ 
+             if (userlistipbansentry.getBanEndDate() != null)
+             {
+-                s = s + "\nYour ban will be removed on " + DATE_FORMAT.format(userlistipbansentry.getBanEndDate());
++                s = s + "\n封禁将于 " + DATE_FORMAT.format(userlistipbansentry.getBanEndDate());
+             }
+ 
+             return s;
+         }
+         else
+         {
+-            return this.playerEntityList.size() >= this.maxPlayers && !this.bypassesPlayerLimit(profile) ? "The server is full!" : null;
++            return this.playerEntityList.size() >= this.maxPlayers && !this.bypassesPlayerLimit(profile) ? "服务器已满！" : null;
          }
      }
  
@@ -467,11 +504,11 @@
 +        if (getBannedPlayers().isBanned(profile) && !getBannedPlayers().getEntry(profile).hasBanExpired())
 +        {
 +            UserListBansEntry userlistbansentry = (UserListBansEntry)this.bannedPlayers.getEntry(profile);
-+            String s1 = "You are banned from this server!\nReason: " + userlistbansentry.getBanReason();
++            String s1 = "你已被此服务器封禁！\n原因：" + userlistbansentry.getBanReason();
 +
 +            if (userlistbansentry.getBanEndDate() != null)
 +            {
-+                s1 = s1 + "\nYour ban will be removed on " + DATE_FORMAT.format(userlistbansentry.getBanEndDate());
++                s1 = s1 + "\n封禁将于 " + DATE_FORMAT.format(userlistbansentry.getBanEndDate());
 +            }
 +
 +            // return s1;
@@ -479,17 +516,17 @@
 +        }
 +        else if (!this.canJoin(profile))
 +        {
-+            // return "You are not white-listed on this server!";
++            // return "你不在此服务器的白名单中！";
 +            event.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, org.spigotmc.SpigotConfig.whitelistMessage); // Spigot
 +        }
 +        else if (getBannedIPs().isBanned(socketaddress) && !getBannedIPs().getBanEntry(socketaddress).hasBanExpired())
 +        {
 +            UserListIPBansEntry userlistipbansentry = this.bannedIPs.getBanEntry(socketaddress);
-+            String s = "Your IP address is banned from this server!\nReason: " + userlistipbansentry.getBanReason();
++            String s = "你的 IP 地址已被此服务器封禁！\n原因：" + userlistipbansentry.getBanReason();
 +
 +            if (userlistipbansentry.getBanEndDate() != null)
 +            {
-+                s = s + "\nYour ban will be removed on " + DATE_FORMAT.format(userlistipbansentry.getBanEndDate());
++                s = s + "\n封禁将于 " + DATE_FORMAT.format(userlistipbansentry.getBanEndDate());
 +            }
 +
 +            // return s;
@@ -497,7 +534,7 @@
 +        }
 +        else
 +        {
-+            // return this.playerEntityList.size() >= this.maxPlayers && !this.bypassesPlayerLimit(profile) ? "The server is full!" : null;
++            // return this.playerEntityList.size() >= this.maxPlayers && !this.bypassesPlayerLimit(profile) ? "服务器已满！" : null;
 +            if (this.playerEntityList.size() >= this.maxPlayers && !this.bypassesPlayerLimit(profile)) {
 +                event.disallow(PlayerLoginEvent.Result.KICK_FULL, org.spigotmc.SpigotConfig.serverFullMessage); // Spigot
 +            }
